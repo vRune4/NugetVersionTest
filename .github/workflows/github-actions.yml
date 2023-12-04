@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -49,3 +49,9 @@ jobs:
         run: dotnet pack --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build --output .
       - name: Push
         run: dotnet nuget push "NugetVersionTest.${{ env.GitVersion_FullSemVer }}.nupkg" --source "https://nuget.pkg.github.com/vRune4/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            custom_tag: ${{ env.GitVersion_FullSemVer }}
