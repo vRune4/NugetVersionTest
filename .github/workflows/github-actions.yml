@@ -43,14 +43,20 @@ jobs:
 
       - name: Build
         run: dotnet build --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }}
+
       - name: Test
         run: dotnet test --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build
+
       - name: Pack
+        if: github.event_name != 'pull_request'
         run: dotnet pack --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build --output .
+
       - name: Push
+        if: github.event_name != 'pull_request'
         run: dotnet nuget push "NugetVersionTest.${{ env.GitVersion_FullSemVer }}.nupkg" --source "https://nuget.pkg.github.com/vRune4/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump version and push tag
+        if: github.event_name != 'pull_request'
         uses: mathieudutour/github-tag-action@v6.1
         with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
