@@ -3,6 +3,18 @@
   <PropertyGroup>
     <TargetFrameworks>net8.0;net48</TargetFrameworks>
 	<LangVersion>latest</LangVersion>
+	<Title>NuGet Version Test</Title>
+	<Authors>Rune Moberg</Authors>
+	<Company>Visma SmartSkill</Company>
+	<Description>This is a test project that explores GitHub's build pipeline and package repository.</Description>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
