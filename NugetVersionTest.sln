@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NugetVersionTest", "src\NugetVersionTest\NugetVersionTest.csproj", "{D7ADE3AE-55CB-4AF0-A542-66FCAD8D10A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B996506E-9B8A-440D-9120-06DE5CFCCBF8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NugetVersionTest", "NugetVersionTest", "{ED55A764-8DCC-4510-B61F-E5F00779AC13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{9D6BF178-3AFE-44A5-B8E8-B056C1AD1DD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{2EBE905E-DE28-40A2-B8C6-17025DF6EFB1}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\github-actions.yml = .github\workflows\github-actions.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7ADE3AE-55CB-4AF0-A542-66FCAD8D10A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7ADE3AE-55CB-4AF0-A542-66FCAD8D10A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7ADE3AE-55CB-4AF0-A542-66FCAD8D10A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7ADE3AE-55CB-4AF0-A542-66FCAD8D10A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D7ADE3AE-55CB-4AF0-A542-66FCAD8D10A1} = {ED55A764-8DCC-4510-B61F-E5F00779AC13}
+		{ED55A764-8DCC-4510-B61F-E5F00779AC13} = {B996506E-9B8A-440D-9120-06DE5CFCCBF8}
+		{2EBE905E-DE28-40A2-B8C6-17025DF6EFB1} = {9D6BF178-3AFE-44A5-B8E8-B056C1AD1DD3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1532F40-0573-4E43-91D3-7C329241CCD4}
+	EndGlobalSection
+EndGlobal
