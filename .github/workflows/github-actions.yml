@@ -106,8 +106,8 @@ jobs:
           echo "UncommittedChanges: ${{ env.GitVersion_UncommittedChanges }}"
           echo "CommitDate: ${{ env.GitVersion_CommitDate }}"
       - name: Build
-        run: dotnet build --configuration Release /p:Version=${{ env.GitVersion_NuGetVersionV2 }}
+        run: dotnet build --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }}
       - name: Test
-        run: dotnet test --configuration Release /p:Version=${{ env.GitVersion_NuGetVersionV2 }} --no-build
+        run: dotnet test --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build
       - name: Pack
-        run: dotnet pack --configuration Release /p:Version=${{ env.GitVersion_NuGetVersionV2 }} --no-build --output .
+        run: dotnet pack --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build --output .
