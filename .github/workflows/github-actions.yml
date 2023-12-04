@@ -43,7 +43,5 @@ jobs:
         run: dotnet test --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build --output .
-      - name: NugetSourceSetup
-        run: dotnet nuget add source --username vRune4 --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/vRune4/index.json"
       - name: Push
-        run: dotnet nuget push "NugetVersionTest.${{ env.GitVersion_FullSemVer }}.nupkg" --source "github"
+        run: dotnet nuget push "NugetVersionTest.${{ env.GitVersion_FullSemVer }}.nupkg" --source "https://nuget.pkg.github.com/vRune4/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
