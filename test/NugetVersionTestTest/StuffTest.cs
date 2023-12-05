@@ -1,15 +1,21 @@
 using NugetVersionTest;
 using Xunit;
 
-namespace NugetVersionTestTest
+namespace NugetVersionTestTest;
+
+public class StuffTest
 {
-    public class StuffTest
+    [Fact]
+    public void TestMeaningOfLifeReturns42()
     {
-        [Fact]
-        public void TestMeaningOfLife()
-        {
-            var stuff = new Stuff();
-            Assert.Equal(42, stuff.MeaningOfLife);
-        }
+        var stuff = new Stuff();
+        Assert.Equal(42, stuff.MeaningOfLife);
+    }
+
+    [Fact]
+    public void TestSomeOtherThingReturnsSix()
+    {
+        var stuff = new Stuff();
+        Assert.Equal(6, stuff.SomeOtherThing);
     }
 }
