@@ -48,4 +48,4 @@ jobs:
       - name: "🏷️ Push tag"
         uses: EndBug/latest-tag@v1
         with:
-          tag-name: v${{ env.GitVersion_FullSemVer }}
+          ref: v${{ env.GitVersion_FullSemVer }}
