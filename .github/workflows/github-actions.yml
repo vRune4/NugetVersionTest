@@ -30,7 +30,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
-        run: dotnet build --configuration Release /p:Version=${{ steps.tag_version.outputs.new_version }};PackageReleaseNotes="${{ steps.tag_version.outputs.changelog}}"
+        run: dotnet build --configuration Release /p:Version=${{ steps.tag_version.outputs.new_version }}
 
       - name: Test
         run: dotnet test --configuration Release /p:Version=${{ steps.tag_version.outputs.new_version }} --no-build
