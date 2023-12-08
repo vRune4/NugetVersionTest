@@ -23,22 +23,36 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.1
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          versionSpec: '6.x'
+          includePrerelease: true
+          preferLatestVersion: true
+
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0
 
       - name: Build
-        run: dotnet build --configuration Release /p:Version=${{ steps.tag_version.outputs.new_version }}
+        run: dotnet build --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }}
 
       - name: Test
-        run: dotnet test --configuration Release /p:Version=${{ steps.tag_version.outputs.new_version }} --no-build
+        run: dotnet test --configuration Release --no-build
 
       - name: Pack
-        run: dotnet pack --configuration Release /p:Version=${{ steps.tag_version.outputs.new_version }} --no-build --output .
+        run: dotnet pack --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build --output .
 
       - name: Push
-        run: dotnet nuget push "NugetVersionTest.${{ steps.tag_version.outputs.new_version }}.nupkg" --source "https://nuget.pkg.github.com/vRune4/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+        run: dotnet nuget push "NugetVersionTest.${{ env.GitVersion_FullSemVer }}.nupkg" --source "https://nuget.pkg.github.com/vRune4/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
 
       
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.GitVersion_FullSemVer }}
+          # release_name: ${{env.RELEASE_STRING}}
+          draft: false
+          prerelease: false
