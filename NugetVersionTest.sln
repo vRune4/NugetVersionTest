@@ -12,11 +12,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{2EBE905E-DE28-40A2-B8C6-17025DF6EFB1}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\github-actions.yml = .github\workflows\github-actions.yml
+		.github\workflows\pr.yml = .github\workflows\pr.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9105F54E-9B4A-4F48-B7B6-B53A291D7FC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetVersionTestTest", "test\NugetVersionTestTest\NugetVersionTestTest.csproj", "{32702ED7-D47F-4CCC-B401-24F7A86569C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NugetVersionTestTest", "test\NugetVersionTestTest\NugetVersionTestTest.csproj", "{32702ED7-D47F-4CCC-B401-24F7A86569C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
