@@ -18,12 +18,12 @@ jobs:
         shell: bash
 
     steps:
-      - name: "⏬ Checkout"
+      - name: "🗳️ Checkout"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install GitVersion
+      - name: "⛽ Install GitVersion"
         uses: gittools/actions/gitversion/setup@v0
         with:
           versionSpec: '6.x'
