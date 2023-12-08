@@ -18,7 +18,7 @@ jobs:
         shell: bash
 
     steps:
-      - name: Checkout
+      - name: "⏬ Checkout"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -30,29 +30,22 @@ jobs:
           includePrerelease: true
           preferLatestVersion: true
 
-      - name: Determine Version
+      - name: "🔬 Determine Version"
         uses: gittools/actions/gitversion/execute@v0
 
-      - name: Build
+      - name: "🧱 Build"
         run: dotnet build --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }}
 
-      - name: Test
+      - name: "🧪 Test"
         run: dotnet test --configuration Release --no-build
 
-      - name: Pack
+      - name: "🗜️ Pack"
         run: dotnet pack --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build --output .
 
-      - name: Push
+      - name: "🫸 Push"
         run: dotnet nuget push "NugetVersionTest.${{ env.GitVersion_FullSemVer }}.nupkg" --source "https://nuget.pkg.github.com/vRune4/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
 
-      
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "🏷️ Push tag"
+        uses: EndBug/latest-tag@v1
         with:
-          tag_name: v${{ env.GitVersion_FullSemVer }}
-          # release_name: ${{env.RELEASE_STRING}}
-          draft: false
-          prerelease: false
+          tag-name: v${{ env.GitVersion_FullSemVer }}
