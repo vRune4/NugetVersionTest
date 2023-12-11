@@ -1,5 +1,8 @@
 name: "NugetVersionTest"
 
+# This action builds the PR branch and runs unit tests.
+# A short comment with version number information is added to the PR.
+
 on:
   pull_request:
 
@@ -45,3 +48,4 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
             message: "The new version is 'v${{ env.GitVersion_FullSemVer }}'. The prerelease tag will be removed when merged to master."
+            comment_tag: versionOutput
