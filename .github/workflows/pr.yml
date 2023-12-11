@@ -3,13 +3,14 @@ name: "NugetVersionTest"
 on:
   pull_request:
 
-permissions:
-  contents: read
-
 jobs:
   build-and-push:
     name: "NugetVersionTest"
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
 
     defaults:
       run:
@@ -18,9 +19,29 @@ jobs:
     steps:
       - name: 🗳️ Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⛽ Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '6.x'
+          includePrerelease: true
+          preferLatestVersion: true
+
+      - name: 🔬 Determine Version
+        uses: gittools/actions/gitversion/execute@v0
 
       - name: 🧱 Build
-        run: dotnet build --configuration Release 
+        run: dotnet build --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }}
 
       - name: 🧪 Test
-        run: dotnet test --configuration Release --no-build      
+        run: dotnet test --configuration Release --no-build
+
+      - name: 🗜️ Pack
+        run: dotnet pack --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build --output .
+
+      - name: 📜 Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+            message: "The new version is 'v${{ env.GitVersion_FullSemVer }}'. The prerelease tag will be removed when merged to master."
