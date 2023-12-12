@@ -1,6 +1,6 @@
 # NugetVersionTest
 
-![Build passing](/actions/workflows/github-actions.yml/badge.svg?event=push)
+![Build passing](actions/workflows/github-actions.yml/badge.svg?event=push)
 This repository contains a test nuget project complete with a CI/CD pipeline and automatic versioning.
 
 [GitVersion](https://gitversion.net/) handles automatic versioning. This project follows the [Semantic Versioning 2.0.0](https://semver.org/) specification.
