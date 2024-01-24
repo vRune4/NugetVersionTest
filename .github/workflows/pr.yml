@@ -1,4 +1,4 @@
-name: "NugetVersionTest"
+name: "PR Build"
 
 # This action builds the PR branch and runs unit tests.
 # A short comment with version number information is added to the PR.
@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  build-and-push:
+  build-and-test:
     name: "NugetVersionTest"
     runs-on: ubuntu-latest
 
