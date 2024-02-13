@@ -33,19 +33,20 @@ jobs:
           preferLatestVersion: true
 
       - name: 🔬 Determine Version
+        id: gitversion
         uses: gittools/actions/gitversion/execute@v0
 
       - name: 🧱 Build
-        run: dotnet build --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }}
+        run: dotnet build --configuration Release /p:Version=${{ steps.gitversion.outputs.fullSemVer }}
 
       - name: 🧪 Test
         run: dotnet test --configuration Release --no-build
 
       - name: 🗜️ Pack
-        run: dotnet pack --configuration Release /p:Version=${{ env.GitVersion_FullSemVer }} --no-build --output .
+        run: dotnet pack --configuration Release /p:Version=${{ steps.gitversion.outputs.fullSemVer }} --no-build --output .
 
       - name: 📜 Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-            message: "The new version is 'v${{ env.GitVersion_FullSemVer }}'. The prerelease tag will be removed when merged to master."
+            message: "The new version is 'v${{ steps.gitversion.outputs.fullSemVer }}'. The prerelease tag will be removed when merged to master."
             comment_tag: versionOutput
